@@ -127,6 +127,7 @@ main {
   align-content: center;
   place-items: center;
 
+  text-transform: capitalize;
   border-radius: 10px;
   border: 1px solid var(--main-text-clr);
 }

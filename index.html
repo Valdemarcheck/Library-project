@@ -27,19 +27,19 @@
         <form action="." id="card-info-form">
           <div class="card-main">
             <div class="row">
-              <label for="name">Name</label>
+              <label for="title">Title</label>
               <div class="separator"></div>
-              <input type="text" id="name" name="name" />
+              <input type="text" id="title" name="title" value="Ruzvelt" />
             </div>
             <div class="row">
               <label for="author">Author</label>
               <div class="separator"></div>
-              <input type="text" id="author" name="author" />
+              <input type="text" id="author" name="author" value="Ruzvelt" />
             </div>
             <div class="row">
               <label for="pages">Pages</label>
               <div class="separator"></div>
-              <input type="tel" id="pages" name="pages" />
+              <input type="tel" id="pages" name="pages" value="30" />
             </div>
             <div class="row">
               <label for="read">Read?</label>
@@ -48,7 +48,9 @@
             </div>
           </div>
         </form>
-        <button type="submit" form="card-info-form">Add</button>
+        <button type="submit" class="form-submit-button" form="card-info-form">
+          Add
+        </button>
       </div>
     </div>
   </body>
