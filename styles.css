@@ -1,0 +1,16 @@
+/* IMPORTING FONTS */
+
+@font-face {
+  font-family: "EB Garamond Regular";
+  src: url("./fonts/EB_Garamond/EBGaramond-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "EB Garamond Medium";
+  src: url("./fonts/EB_Garamond/EBGaramond-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Century Expanded";
+  src: url("./fonts/Century\ Expanded\ Regular.otf") format("opentype");
+}
