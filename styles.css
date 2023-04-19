@@ -28,10 +28,13 @@
   --card-bg-clr: #dcdac9;
   --accent-bg-clr: #c7af99;
   --read-bg-clr: #9ac799;
+  --input-bg-clr: #cbc8ab;
 
   --main-text-clr: #0d0d02;
   --accent-text-clr: #0d0202;
   --read-text-clr: #020d02;
+
+  --row-column-size: minmax(50px, 120px);
 }
 
 h1 {
@@ -103,10 +106,10 @@ main {
   grid-template-rows: repeat(3, auto);
   justify-items: center;
   align-items: center;
-  row-gap: 10px;
+  row-gap: 30px;
 }
 
-.info {
+.card-main {
   display: grid;
   justify-items: center;
   grid-template-rows: repeat(3, auto);
@@ -119,7 +122,7 @@ main {
   padding: 10px;
 
   display: grid;
-  grid-template-columns: 1fr 1px 1fr;
+  grid-template-columns: var(--row-column-size) 1px var(--row-column-size);
   grid-gap: 10px;
   align-content: center;
   place-items: center;
@@ -147,7 +150,8 @@ main {
   aspect-ratio: 1/1;
 }
 
-.read-toggle {
+.read-toggle,
+button[type="submit"] {
   border: none;
   border-radius: 15px;
   padding: 7px 20px;
@@ -158,4 +162,36 @@ main {
 .read {
   background-color: var(--read-bg-clr);
   color: var(--read-text-clr);
+}
+
+.form-background {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000083;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.row input:not([type="checkbox"]) {
+  padding: 5px 10px;
+  width: 100px;
+  background-color: var(--input-bg-clr);
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+}
+
+.row input[type="checkbox"] {
+  width: 20px;
+  aspect-ratio: 1/1;
+  appearance: none;
+  background-color: var(--accent-bg-clr);
+  border-radius: 10px;
+}
+
+.row input[type="checkbox"]:checked {
+  background-color: var(--read-bg-clr);
 }
