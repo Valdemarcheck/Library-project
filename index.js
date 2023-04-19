@@ -6,7 +6,7 @@ const main = document.querySelector("main");
 
 addBookButton.addEventListener("click", () => ShowForm(formCard));
 formCard.addEventListener("click", (e) => HideForm(e), { capture: false });
-formSubmitButton.addEventListener("click", (e) => CreateBook(e));
+formSubmitButton.addEventListener("click", (e) => CreateBook(e, formCard));
 
 function HideForm(e) {
   if (e.target == formCard) {
@@ -18,21 +18,42 @@ function ShowForm(form) {
   form.style.display = "flex";
 }
 
-function CreateBook(e) {
-  e.preventDefault();
+function areAllInputsFilled(form) {
+  const inputFields = [
+    ...form.querySelectorAll('input:not([type="checkbox"])'),
+  ];
 
-  const title = formCard.querySelector("#title").value;
-  const author = formCard.querySelector("#author").value;
-  const pages = formCard.querySelector("#pages").value;
-  const read = formCard.querySelector("#read").checked;
-  const book = new Book(title, author, pages, read);
+  const requiredFields = inputFields.filter((input) => {
+    return input.hasAttribute("required");
+  });
 
-  book.setupRemovalButton();
-  book.setupBook();
+  return requiredFields.every((input) => {
+    return input.value.length > 0;
+  });
+}
+
+function CreateBook(e, form) {
+  if (areAllInputsFilled(form)) {
+    e.preventDefault();
+
+    const title = formCard.querySelector("#title").value;
+    const author = formCard.querySelector("#author").value;
+    const pages = formCard.querySelector("#pages").value;
+    const read = formCard.querySelector("#read").checked;
+    const book = new Book(title, author, pages, read);
+
+    book.setupRemovalButton();
+    book.setupBook();
+  }
 }
 
 function SetupRows(destination) {
-  for (let key in { author: this.author, pages: this.pages, read: this.read }) {
+  const template = { author: this.author, pages: this.pages, read: this.read };
+  for (let key in template) {
+    if (key === "read") {
+      this[key] = replaceBoolWithString(this[key]);
+    }
+
     const row = document.createElement("div");
     row.classList.add("row");
 
@@ -52,6 +73,14 @@ function SetupRows(destination) {
   }
 }
 
+function replaceBoolWithString(value) {
+  if (value === false) {
+    return "No";
+  } else {
+    return "Yes";
+  }
+}
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -60,15 +89,16 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.setupRemovalButton = function () {
-  this.removalButton = document.createElement("button");
-  this.removalButton.classList.add("read-toggle");
-  this.removalButton.addEventListener("click", (e) => this.destroyYourself(e));
-  this.removalButton.textContent = "Delete this book";
+  const removalButton = document.createElement("button");
+  removalButton.classList.add("read-toggle");
+  removalButton.addEventListener("click", (e) => this.destroyYourself(e));
+  removalButton.textContent = "Delete this book";
+  this.removalButton = removalButton;
 };
 
 Book.prototype.setupBook = function () {
-  this.bookCardDiv = document.createElement("div");
-  this.bookCardDiv.classList.add("card");
+  const bookCardDiv = document.createElement("div");
+  bookCardDiv.classList.add("card");
 
   const cardHeader = document.createElement("h2");
   cardHeader.textContent = this.title;
@@ -78,10 +108,11 @@ Book.prototype.setupBook = function () {
 
   SetupRows.call(this, cardMain);
 
-  this.bookCardDiv.appendChild(cardHeader);
-  this.bookCardDiv.appendChild(cardMain);
-  this.bookCardDiv.appendChild(this.removalButton);
-  main.appendChild(this.bookCardDiv);
+  bookCardDiv.appendChild(cardHeader);
+  bookCardDiv.appendChild(cardMain);
+  bookCardDiv.appendChild(this.removalButton);
+  main.appendChild(bookCardDiv);
+  this.bookCardDiv = bookCardDiv;
 };
 
 Book.prototype.destroyYourself = function () {

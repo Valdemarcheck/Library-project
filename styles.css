@@ -16,6 +16,7 @@
 }
 
 :root {
+  overflow-x: hidden;
   font-size: 14px;
 
   --smaller-font-size: 1rem;
@@ -42,6 +43,7 @@ h1 {
 }
 
 h2 {
+  text-align: center;
   font-size: var(--medium-font-size);
 }
 
@@ -165,9 +167,12 @@ button[type="submit"] {
   color: var(--read-text-clr);
 }
 
+.fixed {
+  position: fixed;
+}
+
 .form-background {
   display: none;
-  position: absolute;
   width: 100vw;
   height: 100vh;
   background-color: #00000083;

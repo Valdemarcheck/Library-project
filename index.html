@@ -21,36 +21,53 @@
       <button class="add-book-button fill-volume accent">+</button>
     </header>
     <main></main>
-    <div class="form-background">
-      <div class="card form-card">
-        <h2>Add a book</h2>
-        <form action="." id="card-info-form">
-          <div class="card-main">
-            <div class="row">
-              <label for="title">Title</label>
-              <div class="separator"></div>
-              <input type="text" id="title" name="title" value="Ruzvelt" />
+    <div class="fixed">
+      <div class="form-background">
+        <div class="card form-card">
+          <h2>Add a book</h2>
+          <form action="." id="card-info-form">
+            <div class="card-main">
+              <div class="row">
+                <label for="title">Title</label>
+                <div class="separator"></div>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  placeholder="Harry Potter"
+                  required
+                />
+              </div>
+              <div class="row">
+                <label for="author">Author</label>
+                <div class="separator"></div>
+                <input
+                  type="text"
+                  id="author"
+                  name="author"
+                  placeholder="Joan Rowling"
+                />
+              </div>
+              <div class="row">
+                <label for="pages">Pages</label>
+                <div class="separator"></div>
+                <input type="tel" id="pages" name="pages" placeholder="330" />
+              </div>
+              <div class="row">
+                <label for="read">Read?</label>
+                <div class="separator"></div>
+                <input type="checkbox" name="read" id="read" />
+              </div>
             </div>
-            <div class="row">
-              <label for="author">Author</label>
-              <div class="separator"></div>
-              <input type="text" id="author" name="author" value="Ruzvelt" />
-            </div>
-            <div class="row">
-              <label for="pages">Pages</label>
-              <div class="separator"></div>
-              <input type="tel" id="pages" name="pages" value="30" />
-            </div>
-            <div class="row">
-              <label for="read">Read?</label>
-              <div class="separator"></div>
-              <input type="checkbox" name="read" id="read" />
-            </div>
-          </div>
-        </form>
-        <button type="submit" class="form-submit-button" form="card-info-form">
-          Add
-        </button>
+          </form>
+          <button
+            type="submit"
+            class="form-submit-button"
+            form="card-info-form"
+          >
+            Add
+          </button>
+        </div>
       </div>
     </div>
   </body>
