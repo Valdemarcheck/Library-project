@@ -207,6 +207,11 @@ button[type="submit"] {
 
 /* ACCESSIBILITY */
 
+.card:not(.form-card) {
+  animation: scale-from-zero 0.4s cubic-bezier(0.1, 0.74, 0, 1.3);
+  animation-fill-mode: forwards;
+}
+
 .card:not(.form-card):hover {
   background-color: var(--card-hover-bg-clr);
   box-shadow: 0 4px 6px 1px var(--accent-bg-clr);
@@ -258,5 +263,14 @@ button:active {
   }
   to {
     transform: rotate(360deg) scale(1.1);
+  }
+}
+
+@keyframes scale-from-zero {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
   }
 }
