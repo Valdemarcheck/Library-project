@@ -5,12 +5,15 @@ const formSubmitButton = document.querySelector(".form-submit-button");
 const main = document.querySelector("main");
 
 addBookButton.addEventListener("click", () => ShowForm(formCard));
-formCard.addEventListener("click", (e) => HideForm(e), { capture: false });
+formCard.addEventListener("click", (e) => HideForm(e, formCard), {
+  capture: false,
+});
 formSubmitButton.addEventListener("click", (e) => CreateBook(e, formCard));
 
-function HideForm(e) {
-  if (e.target == formCard) {
-    formCard.style.display = "none";
+function HideForm(e, form) {
+  if (e.target == form) {
+    form.style.display = "none";
+    clearInputs(form);
   }
 }
 
@@ -18,10 +21,19 @@ function ShowForm(form) {
   form.style.display = "flex";
 }
 
+function getInputs(form) {
+  return form.querySelectorAll("input:not(#read)");
+}
+
+function clearInputs(form) {
+  const inputFields = getInputs(form);
+  inputFields.forEach((input) => {
+    input.value = "";
+  });
+}
+
 function areAllInputsFilled(form) {
-  const inputFields = [
-    ...form.querySelectorAll('input:not([type="checkbox"])'),
-  ];
+  const inputFields = [...getInputs(form)];
 
   const requiredFields = inputFields.filter((input) => {
     return input.hasAttribute("required");
