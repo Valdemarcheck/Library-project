@@ -20,28 +20,37 @@
       <h1>Library</h1>
       <button class="add-book-button fill-volume accent">+</button>
     </header>
-    <main>
-      <div class="card">
-        <h2>Pinnochio</h2>
-        <div class="info">
-          <div class="row">
-            <p>Author</p>
-            <div class="seperator"></div>
-            <p>Gans Christian Andersen</p>
+    <main></main>
+
+    <div class="form-background">
+      <div class="card form-card">
+        <h2>Add a book</h2>
+        <form action="." id="card-info-form">
+          <div class="card-main">
+            <div class="row">
+              <label for="name">Name</label>
+              <div class="separator"></div>
+              <input type="text" id="name" name="name" />
+            </div>
+            <div class="row">
+              <label for="author">Author</label>
+              <div class="separator"></div>
+              <input type="text" id="author" name="author" />
+            </div>
+            <div class="row">
+              <label for="pages">Pages</label>
+              <div class="separator"></div>
+              <input type="tel" id="pages" name="pages" />
+            </div>
+            <div class="row">
+              <label for="read">Read?</label>
+              <div class="separator"></div>
+              <input type="checkbox" name="read" id="read" />
+            </div>
           </div>
-          <div class="row">
-            <p>Pages</p>
-            <div class="seperator"></div>
-            <p>363</p>
-          </div>
-          <div class="row">
-            <p>Read</p>
-            <div class="seperator"></div>
-            <p>No</p>
-          </div>
-        </div>
-        <button class="read-toggle read">Mark as read</button>
+        </form>
+        <button type="submit" form="card-info-form">Add</button>
       </div>
-    </main>
+    </div>
   </body>
 </html>
