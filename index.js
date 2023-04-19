@@ -4,6 +4,13 @@ const formCard = document.querySelector(".form-background");
 const booksList = [];
 
 addBookButton.onclick = ShowForm.bind(formCard);
+formCard.addEventListener("click", (e) => HideForm(e), { capture: false });
+
+function HideForm(e) {
+  if (e.target == formCard) {
+    formCard.style.display = "none";
+  }
+}
 
 function ShowForm() {
   this.style.display = "flex";
