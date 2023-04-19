@@ -31,6 +31,8 @@
   --read-bg-clr: #9ac799;
   --input-bg-clr: #cbc8ab;
 
+  --card-hover-bg-clr: #dcd9c5;
+
   --main-text-clr: #0d0d02;
   --accent-text-clr: #0d0202;
   --read-text-clr: #020d02;
@@ -98,10 +100,11 @@ main {
 }
 
 .card {
+  transition: box-shadow 0.3s ease;
   padding: 20px 10px;
 
   border-radius: 15px;
-  box-shadow: 0 1px 4px var(--accent-bg-clr);
+  box-shadow: 0 2px 4px var(--accent-bg-clr);
   background-color: var(--card-bg-clr);
 
   display: grid;
@@ -190,7 +193,7 @@ button[type="submit"] {
   font-family: inherit;
 }
 
-.row input[type="checkbox"] {
+#read {
   width: 20px;
   aspect-ratio: 1/1;
   appearance: none;
@@ -198,6 +201,62 @@ button[type="submit"] {
   border-radius: 10px;
 }
 
-.row input[type="checkbox"]:checked {
+#read:checked {
   background-color: var(--read-bg-clr);
+}
+
+/* ACCESSIBILITY */
+
+.card:not(.form-card):hover {
+  background-color: var(--card-hover-bg-clr);
+  box-shadow: 0 4px 6px 1px var(--accent-bg-clr);
+}
+
+h1,
+h2,
+.row label,
+.row p {
+  transition: transform 0.5s ease;
+}
+
+h1:hover,
+h2:hover,
+.row label:hover,
+.row p:hover {
+  transform: translateY(-1px);
+}
+
+.github-link:hover {
+  animation: spin-and-scale ease-in-out 0.7s;
+  animation-fill-mode: forwards;
+}
+
+button {
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+button:active {
+  filter: brightness(0.9);
+}
+
+.row input:focus-visible {
+  border: 1px solid var(--accent-bg-clr);
+}
+
+#read {
+  transition: background-color 0.2s ease;
+}
+
+@keyframes spin-and-scale {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg) scale(1.1);
+  }
 }
