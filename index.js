@@ -93,41 +93,93 @@ function replaceBoolWithString(value) {
   }
 }
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(title, author, pages, read) {
+    this._title = title;
+    this._author = author;
+    this._pages = pages;
+    this._read = read;
+    this._removalButton = null;
+    this._bookCardDiv = null;
+  }
+
+  get title() {
+    return this._title;
+  }
+
+  set title(value) {
+    this._title = value;
+  }
+
+  get author() {
+    return this._author;
+  }
+
+  set author(value) {
+    this._author = value;
+  }
+
+  get pages() {
+    return this._pages;
+  }
+
+  set pages(value) {
+    this._pages = value;
+  }
+
+  get read() {
+    return this._read;
+  }
+
+  set read(value) {
+    this._read = value;
+  }
+
+  get removalButton() {
+    return this._removalButton;
+  }
+
+  set removalButton(value) {
+    this._removalButton = value;
+  }
+
+  get bookCardDiv() {
+    return this._bookCardDiv;
+  }
+
+  set bookCardDiv(value) {
+    this._bookCardDiv = value;
+  }
+
+  setupRemovalButton() {
+    const removalButton = document.createElement("button");
+    removalButton.classList.add("read-toggle");
+    removalButton.addEventListener("click", (e) => this.destroyYourself(e));
+    removalButton.textContent = "Delete this book";
+    this.removalButton = removalButton;
+  }
+
+  setupBook() {
+    const bookCardDiv = document.createElement("div");
+    bookCardDiv.classList.add("card");
+
+    const cardHeader = document.createElement("h2");
+    cardHeader.textContent = this.title;
+
+    const cardMain = document.createElement("div");
+    cardMain.classList.add("card-main");
+
+    SetupRows.call(this, cardMain);
+
+    bookCardDiv.appendChild(cardHeader);
+    bookCardDiv.appendChild(cardMain);
+    bookCardDiv.appendChild(this.removalButton);
+    main.appendChild(bookCardDiv);
+    this.bookCardDiv = bookCardDiv;
+  }
+
+  destroyYourself() {
+    main.removeChild(this.bookCardDiv);
+    delete this;
+  }
 }
-
-Book.prototype.setupRemovalButton = function () {
-  const removalButton = document.createElement("button");
-  removalButton.classList.add("read-toggle");
-  removalButton.addEventListener("click", (e) => this.destroyYourself(e));
-  removalButton.textContent = "Delete this book";
-  this.removalButton = removalButton;
-};
-
-Book.prototype.setupBook = function () {
-  const bookCardDiv = document.createElement("div");
-  bookCardDiv.classList.add("card");
-
-  const cardHeader = document.createElement("h2");
-  cardHeader.textContent = this.title;
-
-  const cardMain = document.createElement("div");
-  cardMain.classList.add("card-main");
-
-  SetupRows.call(this, cardMain);
-
-  bookCardDiv.appendChild(cardHeader);
-  bookCardDiv.appendChild(cardMain);
-  bookCardDiv.appendChild(this.removalButton);
-  main.appendChild(bookCardDiv);
-  this.bookCardDiv = bookCardDiv;
-};
-
-Book.prototype.destroyYourself = function () {
-  delete this;
-  main.removeChild(this.bookCardDiv);
-};
