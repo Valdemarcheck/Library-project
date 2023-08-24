@@ -8,7 +8,7 @@ addBookButton.addEventListener("click", () => ShowForm(formCard));
 formCard.addEventListener("click", (e) => HideForm(e, formCard), {
   capture: false,
 });
-formSubmitButton.addEventListener("click", (e) => CreateBook(e, formCard));
+formSubmitButton.addEventListener("submit", (e) => CreateBook(e, formCard));
 
 function HideForm(e, form) {
   if (e.target == form) {
@@ -32,21 +32,12 @@ function clearInputs(form) {
   });
 }
 
-function areAllInputsFilled(form) {
-  const inputFields = [...getInputs(form)];
-
-  const requiredFields = inputFields.filter((input) => {
-    return input.hasAttribute("required");
-  });
-
-  return requiredFields.every((input) => {
-    return input.value.length > 0;
-  });
-}
-
 function CreateBook(e, form) {
-  if (areAllInputsFilled(form)) {
+  const formElem = form.querySelector("form");
+
+  if (formElem.checkValidity()) {
     e.preventDefault();
+    console.log("valid");
 
     const title = formCard.querySelector("#title").value;
     const author = formCard.querySelector("#author").value;
@@ -86,11 +77,7 @@ function SetupRows(destination) {
 }
 
 function replaceBoolWithString(value) {
-  if (value === false) {
-    return "No";
-  } else {
-    return "Yes";
-  }
+  return value ? "Yes" : "No";
 }
 
 class Book {
@@ -180,6 +167,5 @@ class Book {
 
   destroyYourself() {
     main.removeChild(this.bookCardDiv);
-    delete this;
   }
 }

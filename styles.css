@@ -98,13 +98,13 @@ main {
   padding: 10px;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
-  grid-template-rows: 350px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
+  grid-template-rows: 700px;
   grid-auto-rows: auto;
   justify-items: center;
   justify-content: center;
   column-gap: 30px;
-  row-gap: 20px;
+  row-gap: 30px;
 }
 
 .card {
@@ -125,6 +125,9 @@ main {
 }
 
 .card-main {
+  width: 100%;
+  height: auto;
+
   display: grid;
   justify-items: center;
   grid-template-rows: repeat(3, auto);
@@ -171,7 +174,7 @@ main {
 }
 
 .read-toggle,
-button[type="submit"] {
+.form-submit-button {
   border: none;
   border-radius: 15px;
   padding: 7px 20px;
@@ -198,7 +201,7 @@ button[type="submit"] {
   align-items: center;
 }
 
-.row input:not([type="checkbox"]) {
+input:not([type="checkbox"]) {
   padding: 5px 10px;
   width: clamp(50px, 100%, 150px);
   background-color: var(--input-bg-clr);
@@ -263,12 +266,20 @@ button:active {
   filter: brightness(0.9);
 }
 
-.row input:focus-visible {
+input:focus-visible {
   border: 1px solid var(--accent-bg-clr);
 }
 
 #read {
   transition: background-color 0.2s ease;
+}
+
+input:invalid:not([type="checkbox"]) {
+  border: 2px solid rgb(152, 7, 7);
+}
+
+input:empty:not([type="checkbox"]) {
+  border: 2px solid rgb(152, 96, 7);
 }
 
 @keyframes spin-and-scale {
