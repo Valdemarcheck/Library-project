@@ -20,10 +20,10 @@
   font-size: 14px;
 
   --smaller-font-size: 1rem;
-  --small-font-size: 1.2rem;
-  --button-font-size: 1.2rem;
+  --small-font-size: 1.4rem;
+  --button-font-size: 1.4rem;
   --medium-font-size: 2rem;
-  --large-font-size: 3rem;
+  --large-font-size: 4rem;
 
   --main-bg-clr: #e8e7dc;
   --card-bg-clr: #dcdac9;
@@ -37,7 +37,7 @@
   --accent-text-clr: #0d0202;
   --read-text-clr: #020d02;
 
-  --row-column-size: minmax(50px, 120px);
+  --row-column-size: minmax(50px, 50%);
 }
 
 h1 {
@@ -47,6 +47,14 @@ h1 {
 h2 {
   text-align: center;
   font-size: var(--medium-font-size);
+}
+
+label {
+  font-size: var(--medium-font-size);
+}
+
+input {
+  font-size: var(--small-font-size);
 }
 
 button {
@@ -100,15 +108,17 @@ main {
 }
 
 .card {
+  width: clamp(500px, 30%, 800px);
+  height: clamp(700px, 30%, 1200px);
   transition: box-shadow 0.3s ease;
-  padding: 20px 10px;
+  padding: 10px 5px;
 
   border-radius: 15px;
   box-shadow: 0 2px 4px var(--accent-bg-clr);
   background-color: var(--card-bg-clr);
 
   display: grid;
-  grid-template-rows: repeat(3, auto);
+  grid-template-rows: 1fr 3fr 1fr;
   justify-items: center;
   align-items: center;
   row-gap: 30px;
@@ -121,10 +131,14 @@ main {
   row-gap: 10px;
 }
 
+#card-info-form {
+  width: 100%;
+  height: auto;
+}
+
 .row {
-  height: 100%;
-  width: 90%;
   padding: 10px;
+  width: 70%;
 
   display: grid;
   grid-template-columns: var(--row-column-size) 1px var(--row-column-size);
@@ -186,7 +200,7 @@ button[type="submit"] {
 
 .row input:not([type="checkbox"]) {
   padding: 5px 10px;
-  width: 100px;
+  width: clamp(50px, 100%, 150px);
   background-color: var(--input-bg-clr);
   border: none;
   border-radius: 10px;
